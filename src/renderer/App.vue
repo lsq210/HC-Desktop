@@ -1,15 +1,11 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+	<div id="app">
+		<router-view></router-view>
+	</div>
 </template>
 
 <script>
-  export default {
-    name: 'AQIVisualization'
+  export default{
+    name: 'App'
   }
 </script>
-
-<style>
-  /* CSS */
-</style>

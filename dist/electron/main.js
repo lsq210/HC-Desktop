@@ -2585,7 +2585,7 @@ __WEBPACK_IMPORTED_MODULE_0_electron__["app"].on('activate', function () {
     createWindow();
   }
 });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, "src\\main"))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, "src/main"))
 
 /***/ }),
 /* 16 */
@@ -7205,13 +7205,13 @@ function map_obj(obj, fn){
   }, {})
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "node_modules\\7zip"))
+/* WEBPACK VAR INJECTION */}.call(exports, "node_modules/_7zip@0.0.6@7zip"))
 
 /***/ }),
 /* 46 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"7zip","version":"0.0.6","description":"7zip Windows Package via Node.js","keywords":["7z","7zip","7-zip","windows","install"],"repository":"git@github.com:fritx/win-7zip.git","bin":{"7z":"7zip-lite/7z.exe"},"main":"index.js","scripts":{"test":"mocha"},"license":"GNU LGPL"}
+module.exports = {"name":"7zip","version":"0.0.6","description":"7zip Windows Package via Node.js","keywords":["7z","7zip","7-zip","windows","install"],"repository":"git@github.com:fritx/win-7zip.git","bin":{"7z":"7zip-lite/7z.exe"},"main":"index.js","scripts":{"test":"mocha"},"license":"GNU LGPL","_from":"7zip@0.0.6","_resolved":"http://registry.npm.taobao.org/7zip/download/7zip-0.0.6.tgz"}
 
 /***/ }),
 /* 47 */
