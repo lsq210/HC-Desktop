@@ -11,7 +11,7 @@ export default {
     arcgissence: 'ArcGIS Scene',
     national: 'National',
     multicity: 'Multi City',
-    singlecity: 'Single City'
+    singlecity: 'Statistics of Wuhan'
   },
   navbar: {
     logOut: 'Log Out',

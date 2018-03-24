@@ -7,6 +7,7 @@
 <script>
 /* eslint-disable */
 import * as esriLoader from "esri-loader";
+import testData from "./testdata";
 
 export default {
   data() {
@@ -27,9 +28,9 @@ export default {
           "esri/layers/GraphicsLayer",
           "dojo/domReady!"
         ])
-        .then(([SceneView, WebMap, Graphic, GraphicsLayer]) => {
+        .then(([SceneView, Map, Graphic, GraphicsLayer]) => {
           var map = new Map({
-            basemap: "hybrid"
+            basemap: "streets"
           });
 
           this.sceneView = new SceneView({
@@ -40,12 +41,12 @@ export default {
               // autocasts as new Camera()
               position: {
                 // autocasts as new Point()
-                x: -0.17746710975334712,
-                y: 51.44543992422466,
-                z: 1266.7049653716385
+                x: 104.3,
+                y: 28.7,
+                z: 20000000
               },
-              heading: 0.34445102566290225,
-              tilt: 82.95536300536367
+              heading: 0,
+              tilt: 0
             }
           });
 
@@ -60,31 +61,32 @@ export default {
            * Add a 3D point graphic
            *************************/
 
-          // London
-          var point = {
-            type: "point", // autocasts as new Point()
-            x: -0.178,
-            y: 51.48791,
-            z: 0
-          };
+          for (var i = 0; i < testData.length; i++) {
+            var point = {
+              type: "point", // autocasts as new Point()
+              x: testData[i].value[0],
+              y: testData[i].value[1],
+              z: 0
+            };
 
-          markerSymbol = {
-            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-            color: [226, 119, 40],
-            size: 100,
-            outline: {
-              // autocasts as new SimpleLineSymbol()
-              color: [255, 255, 255],
-              width: 2
-            }
-          };
+            var markerSymbol = {
+              type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+              color: [128, 0, 255, 0.5],
+              size: testData[i].value[2] / 5,
+              outline: {
+                // autocasts as new SimpleLineSymbol()
+                color: [128, 0, 255, 0.75],
+                width: 2
+              }
+            };
 
-          var pointGraphic = new Graphic({
-            geometry: point,
-            symbol: markerSymbol
-          });
+            var pointGraphic = new Graphic({
+              geometry: point,
+              symbol: markerSymbol
+            });
 
-          graphicsLayer.add(pointGraphic);
+            graphicsLayer.add(pointGraphic);
+          }
         })
         .catch(err => {
           // handle any errors

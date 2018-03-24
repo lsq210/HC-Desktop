@@ -7,12 +7,13 @@
 <script>
 /* eslint-disable */
 import * as esriLoader from "esri-loader";
+import testData from "./testdata";
 
 export default {
   data() {
     return {
       mapView: null
-    }
+    };
   },
   mounted() {
     this.initMap();
@@ -29,91 +30,71 @@ export default {
         .then(([MapView, WebMap, Graphic]) => {
           // then we load a web map from an id
           let webmap = new WebMap({
-            portalItem: { id: "52af2de6ca974954b2d800da88dd8f70" }
+            portalItem: { id: "cd2c08450eb24ffc912bf7d097c4db8d" }
           });
-         this.mapView = new MapView({
+          this.mapView = new MapView({
             map: webmap,
             container: "viewDiv"
           });
 
-          // 添加小圆圈
-          var addPoints = [
-            {
-              lng: 114,
-              lat: 34.5,
-              size: 9,
-              color: [226, 119, 40],
-              outlineWidth: 2,
-              outlineColor: [255, 255, 255]
-            },
-            {
-              lng: 150,
-              lat: 34.5,
-              size: 9,
-              color: [226, 119, 40],
-              outlineWidth: 2,
-              outlineColor: [255, 255, 255]
-            }
-          ];
-
-          for (var i = 0; i < addPoints.length; i++) {
+          // alert(testData[0].value[2])
+          for (var i = 0; i < testData.length; i++) {
+            var color = [128, 0, 255, 0.3];
+            var outlineWidth = 1;
+            var outlineColor = [128, 0, 255, 0.75];
+            var size = testData[i].value[2] / 5;
             this.addPoint(
-              addPoints[i].lng,
-              addPoints[i].lat,
-              addPoints[i].size,
-              addPoints[i].color,
-              addPoints[i].outlineWidth,
-              addPoints[i].outlineColor
+              testData[i].value[0],
+              testData[i].value[1],
+              size,
+              color,
+              outlineWidth,
+              outlineColor
             );
           }
-         
         })
         .catch(err => {
           // handle any errors
           console.error(err);
         });
     },
-     // 函数定义
-         addPoint(lng, lat, size, color, outlineWidth, outlineColor) {
-            esriLoader
-        .loadModules([
-          "esri/Graphic",
-          "dojo/domReady!"
-        ]).then(([Graphic]) => {
-            // First create a point geometry (this is the location of the Titanic)
-            var point = {
-              type: "point", // autocasts as new Point()
-              longitude: lng,
-              latitude: lat,
-              size: size
-            };
+    addPoint(lng, lat, size, color, outlineWidth, outlineColor) {
+      esriLoader
+        .loadModules(["esri/Graphic", "dojo/domReady!"])
+        .then(([Graphic]) => {
+          // First create a point geometry (this is the location of the Titanic)
+          var point = {
+            type: "point", // autocasts as new Point()
+            longitude: lng,
+            latitude: lat
+          };
 
-            // Create a symbol for drawing the point
-            var markerSymbol = {
-              type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-              color: color,
-              outline: {
-                // autocasts as new SimpleLineSymbol()
-                color: outlineColor,
-                width: outlineWidth
-              }
-            };
+          // Create a symbol for drawing the point
+          var markerSymbol = {
+            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+            color: color,
+            size: size,
+            outline: {
+              // autocasts as new SimpleLineSymbol()
+              color: outlineColor,
+              width: outlineWidth
+            }
+          };
 
-            // Create a graphic and add the geometry and symbol to it
-            var pointGraphic = new Graphic({
-              geometry: point,
-              symbol: markerSymbol
-            });
+          // Create a graphic and add the geometry and symbol to it
+          var pointGraphic = new Graphic({
+            geometry: point,
+            symbol: markerSymbol
+          });
 
-            // Add the graphics to the view's graphics layer
-            this.mapView.graphics.addMany([pointGraphic]);
+          // Add the graphics to the view's graphics layer
+          this.mapView.graphics.addMany([pointGraphic]);
         })
         .catch(err => {
           // handle any errors
           console.error(err);
         });
-          }
-    
+    }
   }
 };
 </script>

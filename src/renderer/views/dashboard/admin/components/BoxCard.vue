@@ -8,18 +8,18 @@
       <mallki className='mallki-text' text='vue-element-admin'></mallki>
       <div style="padding-top:35px;" class='progress-item'>
         <span>Vue</span>
-        <el-progress :percentage="70"></el-progress>
+        <el-progress :percentage="90"></el-progress>
       </div>
       <div class='progress-item'>
         <span>JavaScript</span>
-        <el-progress :percentage="18"></el-progress>
+        <el-progress :percentage="80"></el-progress>
       </div>
       <div class='progress-item'>
-        <span>Css</span>
-        <el-progress :percentage="12"></el-progress>
+        <span>HTML CSS</span>
+        <el-progress :percentage="65"></el-progress>
       </div>
        <div class='progress-item'>
-        <span>ESLint</span>
+        <span>Electron</span>
         <el-progress :percentage="100" status="success"></el-progress>
       </div>
     </div>
@@ -27,14 +27,14 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { mapGetters } from 'vuex'
 import PanThumb from '@/components/PanThumb'
 import Mallki from '@/components/TextHoverEffect/Mallki'
 
 export default {
   components: { PanThumb, Mallki },
-
-  data () {
+  data() {
     return {
       statisticsData: {
         article_count: 1024,
@@ -50,7 +50,7 @@ export default {
     ])
   },
   filters: {
-    statusFilter (status) {
+    statusFilter(status) {
       const statusMap = {
         success: 'success',
         pending: 'danger'

@@ -55,7 +55,7 @@ import SocialSign from './socialsignin'
 export default {
   components: { LangSelect, SocialSign },
   name: 'login',
-  data () {
+  data() {
     const validateUsername = (rule, value, callback) => {
       if (!isvalidUsername(value)) {
         callback(new Error('Please enter the correct user name'))
@@ -85,14 +85,14 @@ export default {
     }
   },
   methods: {
-    showPwd () {
+    showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
       } else {
         this.passwordType = 'password'
       }
     },
-    handleLogin () {
+    handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
@@ -108,7 +108,7 @@ export default {
         }
       })
     },
-    afterQRScan () {
+    afterQRScan() {
       // const hash = window.location.hash.slice(1)
       // const hashObj = getQueryObject(hash)
       // const originUrl = window.location.origin
@@ -127,10 +127,10 @@ export default {
       // }
     }
   },
-  created () {
+  created() {
     // window.addEventListener('hashchange', this.afterQRScan)
   },
-  destroyed () {
+  destroyed() {
     // window.removeEventListener('hashchange', this.afterQRScan)
   }
 }

@@ -24,7 +24,7 @@ import GithubCorner from '@/components/GithubCorner'
 export default {
   name: 'dashboard-editor',
   components: { PanThumb, GithubCorner },
-  data () {
+  data() {
     return {
       emptyGif: 'https://wpimg.wallstcn.com/0e03b7da-db9e-4819-ba10-9016ddfdaed3'
     }

@@ -16,21 +16,21 @@ import 'codemirror/addon/lint/json-lint'
 
 export default {
   name: 'jsonEditor',
-  data () {
+  data() {
     return {
       jsonEditor: false
     }
   },
   props: ['value'],
   watch: {
-    value (value) {
+    value(value) {
       const editor_value = this.jsonEditor.getValue()
       if (value !== editor_value) {
         this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
       }
     }
   },
-  mounted () {
+  mounted() {
     this.jsonEditor = CodeMirror.fromTextArea(this.$refs.textarea, {
       lineNumbers: true,
       mode: 'application/json',
@@ -46,7 +46,7 @@ export default {
     })
   },
   methods: {
-    getValue () {
+    getValue() {
       return this.jsonEditor.getValue()
     }
   }

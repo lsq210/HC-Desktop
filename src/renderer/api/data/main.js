@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function test (query) {
+export function test(query) {
   return request({
     url: '/viewspot/userinfo',
     method: 'get',
@@ -10,7 +10,7 @@ export function test (query) {
   })
 }
 
-export function getTest (data) {
+export function getTest(data) {
   return request({
     url: '/article/create',
     method: 'post',
@@ -18,7 +18,7 @@ export function getTest (data) {
   })
 }
 
-export function postTest (data) {
+export function postTest(data) {
   return request({
     url: '/article/update',
     method: 'post',

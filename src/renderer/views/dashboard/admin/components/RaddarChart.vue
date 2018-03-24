@@ -3,6 +3,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import { debounce } from '@/utils'
@@ -21,15 +22,15 @@ export default {
     },
     height: {
       type: String,
-      default: '300px'
+      default: '445px'
     }
   },
-  data () {
+  data() {
     return {
       chart: null
     }
   },
-  mounted () {
+  mounted() {
     this.initChart()
     this.__resizeHanlder = debounce(() => {
       if (this.chart) {
@@ -38,7 +39,7 @@ export default {
     }, 100)
     window.addEventListener('resize', this.__resizeHanlder)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (!this.chart) {
       return
     }
@@ -47,10 +48,18 @@ export default {
     this.chart = null
   },
   methods: {
-    initChart () {
+    initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
 
       this.chart.setOption({
+        title: {
+            top: 0,
+            text: 'Capability',
+            left: 'center',
+            textStyle: {
+                color: '#000'
+            }
+        },
         tooltip: {
           trigger: 'axis',
           axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -72,18 +81,18 @@ export default {
             }
           },
           indicator: [
-            { name: 'Sales', max: 10000 },
-            { name: 'Administration', max: 20000 },
-            { name: 'Information Techology', max: 20000 },
-            { name: 'Customer Support', max: 20000 },
-            { name: 'Development', max: 20000 },
-            { name: 'Marketing', max: 20000 }
+            { name: 'Vue', max: 120 },
+            { name: 'Webpack', max: 120 },
+            { name: 'Electron', max: 120 },
+            { name: 'Html & CSS', max: 120 },
+            { name: 'Django', max: 120 },
+            { name: 'Python', max: 120 }
           ]
         },
         legend: {
           left: 'center',
-          bottom: '10',
-          data: ['Allocated Budget', 'Expected Spending', 'Actual Spending']
+          bottom: '30',
+          data: ['GCCCCG', 'lsq210', 'HaoKunT']
         },
         series: [{
           type: 'radar',
@@ -99,16 +108,16 @@ export default {
           },
           data: [
             {
-              value: [5000, 7000, 12000, 11000, 15000, 14000],
-              name: 'Allocated Budget'
+              value: [80, 50, 30, 100, 20, 20],
+              name: 'GCCCCG'
             },
             {
-              value: [4000, 9000, 15000, 15000, 13000, 11000],
-              name: 'Expected Spending'
+              value: [90, 85, 100, 65, 70, 80],
+              name: 'lsq210'
             },
             {
-              value: [5500, 11000, 12000, 15000, 12000, 12000],
-              name: 'Actual Spending'
+              value: [50, 60, 70, 60, 100, 100],
+              name: 'HaoKunT'
             }
           ],
           animationDuration: animationDuration

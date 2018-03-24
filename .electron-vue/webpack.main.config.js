@@ -2,11 +2,18 @@
 
 process.env.BABEL_ENV = 'main'
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const path = require('path')
 const { dependencies } = require('../package.json')
 const webpack = require('webpack')
 
 const BabiliWebpackPlugin = require('babili-webpack-plugin')
+
+const extractScss = new ExtractTextPlugin({
+  filename: 'dist/[name].[hash].css',
+  allChunks: true,
+});
 
 let mainConfig = {
   entry: {
@@ -34,8 +41,12 @@ let mainConfig = {
         exclude: /node_modules/
       },
       {
-        test: /\.node$/,
-        use: 'node-loader'
+        test: /\.scss$/,
+        use: extractScss.extract({
+          fallback: 'style-loader',
+          use: 'sass-loader'
+        }),
+        exclude: /node_modules/,
       }
     ]
   },

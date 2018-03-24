@@ -1,14 +1,14 @@
 <template>
   <div class="map-container">
-    <ArcGISScene></ArcGISScene>
+    <ArcGISSence></ArcGISSence>
   </div>
 </template>
 <script>
-import ArcGISScene from '@/components/ArcGIS/scene'
+import ArcGISSence from '@/components/ArcGIS/scene'
 
 export default {
-  name: 'arcgisscene',
-  components: { ArcGISScene }
+  name: 'arcgismap',
+  components: { ArcGISSence }
 }
 </script>
 
@@ -17,7 +17,7 @@ export default {
   position: relative;
   padding: 20px;
   width: 100%;
-  height: 87.65vh;
+  height: 87vh;
   background-color: #eee;
   z-index:0;
 }

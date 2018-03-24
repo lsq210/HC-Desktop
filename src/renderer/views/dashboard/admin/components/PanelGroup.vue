@@ -1,46 +1,46 @@
 <template>
   <el-row class="panel-group" :gutter="40">
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class='card-panel' @click="handleSetLineChartData('newVisitis')">
-        <div class="card-panel-icon-wrapper icon-people">
+      <div class='card-panel' @click="handleSetLineChartData('GCCCCGContributions')">
+        <div class="card-panel-icon-wrapper icon-money">
+          <svg-icon icon-class="user" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text"><a href="https://github.com/GCCCCG/" target="_brank">GCCCCG</a></div>
+          <count-to class="card-panel-num" :startVal="0" :endVal="14181" :duration="2100"></count-to>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('lsq210Contributions')">
+        <div class="card-panel-icon-wrapper icon-money">
+          <svg-icon icon-class="user" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text"><a href="https://github.com/lsq210/" target="_brank">lsq210</a></div>
+          <count-to class="card-panel-num" :startVal="0" :endVal="51304" :duration="3000"></count-to>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('HaoKunTContributions')">
+        <div class="card-panel-icon-wrapper icon-message">
+          <svg-icon icon-class="user" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text"><a href="https://github.com/HaoKunT/" target="_brank">HaoKunT</a></div>
+          <count-to class="card-panel-num" :startVal="0" :endVal="2927" :duration="1200"></count-to>
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('sleepyeverydayContributions')">
+        <div class="card-panel-icon-wrapper icon-shoppingCard">
           <svg-icon icon-class="peoples" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">New Visits</div>
-          <count-to class="card-panel-num" :startVal="0" :endVal="102400" :duration="2600"></count-to>
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('messages')">
-        <div class="card-panel-icon-wrapper icon-message">
-          <svg-icon icon-class="message" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">Messages</div>
-          <count-to class="card-panel-num" :startVal="0" :endVal="81212" :duration="3000"></count-to>
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('purchases')">
-        <div class="card-panel-icon-wrapper icon-money">
-          <svg-icon icon-class="money" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">Purchases</div>
-          <count-to class="card-panel-num" :startVal="0" :endVal="9280" :duration="3200"></count-to>
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('shoppings')">
-        <div class="card-panel-icon-wrapper icon-shoppingCard">
-          <svg-icon icon-class="shoppingCard" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">Shoppings</div>
-          <count-to class="card-panel-num" :startVal="0" :endVal="13600" :duration="3600"></count-to>
+          <div class="card-panel-text"><a href="https://github.com/sleepy-everyday/" target="_brank">Organization</a></div>
+          <count-to class="card-panel-num" :startVal="0" :endVal="68412" :duration="4500"></count-to>
         </div>
       </div>
     </el-col>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import CountTo from 'vue-count-to'
 
 export default {
@@ -55,7 +56,7 @@ export default {
     CountTo
   },
   methods: {
-    handleSetLineChartData (type) {
+    handleSetLineChartData(type) {
       this.$emit('handleSetLineChartData', type)
     }
   }

@@ -12,7 +12,7 @@
 import XLSX from 'xlsx'
 
 export default {
-  data () {
+  data() {
     return {
       loading: false,
       excelData: {
@@ -22,12 +22,12 @@ export default {
     }
   },
   methods: {
-    generateDate ({ header, results }) {
+    generateDate({ header, results }) {
       this.excelData.header = header
       this.excelData.results = results
       this.$emit('on-selected-file', this.excelData)
     },
-    handleDrop (e) {
+    handleDrop(e) {
       e.stopPropagation()
       e.preventDefault()
       const files = e.dataTransfer.files
@@ -40,20 +40,20 @@ export default {
       e.stopPropagation()
       e.preventDefault()
     },
-    handleDragover (e) {
+    handleDragover(e) {
       e.stopPropagation()
       e.preventDefault()
       e.dataTransfer.dropEffect = 'copy'
     },
-    handleUpload () {
+    handleUpload() {
       document.getElementById('excel-upload-input').click()
     },
-    handkeFileChange (e) {
+    handkeFileChange(e) {
       const files = e.target.files
       const itemFile = files[0] // only use files[0]
       this.readerData(itemFile)
     },
-    readerData (itemFile) {
+    readerData(itemFile) {
       const reader = new FileReader()
       reader.onload = e => {
         const data = e.target.result
@@ -67,7 +67,7 @@ export default {
       }
       reader.readAsArrayBuffer(itemFile)
     },
-    fixdata (data) {
+    fixdata(data) {
       let o = ''
       let l = 0
       const w = 10240
@@ -75,7 +75,7 @@ export default {
       o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)))
       return o
     },
-    get_header_row (sheet) {
+    get_header_row(sheet) {
       const headers = []
       const range = XLSX.utils.decode_range(sheet['!ref'])
       let C
