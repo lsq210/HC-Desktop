@@ -6,7 +6,7 @@
      <div class="chart-wrapper">
       <calendar id="calendar" height='100%' width='100%'></calendar>
     </div>
-    <div class="chart-wrapper">
+    <div class="chart-wrapper"  style="height: 100vh;">
       <radar id="radar" height='100%' width='100%'></radar>
     </div>
     <div class="chart-wrapper">
@@ -21,17 +21,17 @@
  
 <script>
 /* eslint-disable */
-import mixChart from '@/components/Charts/mixChart' 
+import mixChart from '@/components/Charts/singleCity/mixChart'
 import radar from '@/components/Charts/singleCity/radar'
 import calendar from '@/components/Charts/singleCity/calendar'
 import scatterColor2 from '@/components/Charts/singleCity/scatterColor2'
-import echartstest from '@/components/Charts/echartstest'
+import echartstest from '@/components/Charts/singleCity/rose'
  
-export default { 
+export default {
   name: 'keyboardChart', 
-  components: { mixChart,radar,calendar,scatterColor2,echartstest } 
-} 
-</script> 
+  components: { mixChart,radar,calendar,scatterColor2,echartstest }
+}
+</script>
  
 <style lang="scss" scoped>
 .chart-container {
