@@ -67,8 +67,7 @@ export default {
     return {
       cityOptions: [],
       citySelectedValue: "",
-      dateSelectedValue: "2017",
-      isDatePickerDisable: true
+      dateSelectedValue: "2017-03"
     };
   },
   mounted() {
@@ -76,6 +75,9 @@ export default {
   },
   computed: {
     isCitySelectDisable: function() {
+      return this.cityOptions.length > 0 ? false : true
+    },
+    isDatePickerDisable: function() {
       return this.cityOptions.length > 0 ? false : true
     }
   },

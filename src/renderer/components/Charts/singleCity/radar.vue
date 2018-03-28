@@ -55,11 +55,11 @@ export default {
         .then(response => {
           // var dataBJave = [[168, 128, 172, 1.49, 97, 56, 24]];
           var maxData = [];
-          maxData.push(response.data[2]);
+          maxData.push(response.data[0]);
           var minData = [];
-          minData.push(response.data[0]);
+          minData.push(response.data[1]);
           var argData = [];
-          argData.push(response.data[1]);
+          argData.push(response.data[2]);
 
           var lineStyle = {
             normal: {
@@ -139,7 +139,7 @@ export default {
                 },
                 areaStyle: {
                   normal: {
-                    opacity: 0.25
+                    opacity: 0.2
                   }
                 }
               },
@@ -156,7 +156,7 @@ export default {
                 },
                 areaStyle: {
                   normal: {
-                    opacity: 0.9
+                    opacity: 1
                   }
                 }
               },
@@ -173,7 +173,7 @@ export default {
                 },
                 areaStyle: {
                   normal: {
-                    opacity: 0.5
+                    opacity: 0.4
                   }
                 }
               }

@@ -136,8 +136,8 @@ export function getCityDaysLeavelByYear(query) {
   })
 }
 
-export function getdailydatabymouth(query) {
-  // 用于散点图和平行坐标图 GET /getdailydatabymouth/?format=json?city=2&year=2017&month=3
+export function getDailyDataByMouth(query) {
+  // 用于散点图和平行坐标图 GET /getdailydatabymouth/?format=json&city=2&year=2017&month=3
   //   [
   //     [1,91,45,125,0.82,34,23,"良"],
   //     ...
@@ -175,6 +175,59 @@ export function getCitiesInfo(query) {
   // ]
   return request({
     url: '/getcitiesinfo',
+    method: 'get',
+    params: query
+  })
+}
+
+export function getMonthLevelAndData(query) {
+  // 获取某城市分月的合格天数和不合格天数以及月平均AQI指数 GET /getmonthlevelanddata/?dormat=json&city=2&year=2017
+  //   [
+  //     [
+  //         21,
+  //         24,
+  //         15,
+  //         14,
+  //         17,
+  //         10,
+  //         11,
+  //         17,
+  //         19,
+  //         17,
+  //         13,
+  //         13
+  //     ],
+  //     [
+  //         10,
+  //         5,
+  //         16,
+  //         15,
+  //         14,
+  //         20,
+  //         20,
+  //         14,
+  //         10,
+  //         14,
+  //         17,
+  //         18
+  //     ],
+  //     [
+  //         97.0,
+  //         70.8620689655172,
+  //         132.322580645161,
+  //         105.586206896552,
+  //         111.387096774194,
+  //         125.5,
+  //         118.161290322581,
+  //         94.0322580645161,
+  //         86.1666666666667,
+  //         115.870967741935,
+  //         132.7,
+  //         167.741935483871
+  //     ]
+  // ]
+  return request({
+    url: '/getmonthlevelanddata',
     method: 'get',
     params: query
   })
