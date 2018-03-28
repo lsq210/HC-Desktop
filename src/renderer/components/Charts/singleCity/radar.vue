@@ -71,10 +71,11 @@ export default {
           var option = {
             backgroundColor: "#344b58",
             title: {
+              top: 20,
               text: "AQI - 雷达图",
               left: "center",
               textStyle: {
-                color: "#eee"
+                color: "#fff"
               }
             },
             legend: {
@@ -85,7 +86,7 @@ export default {
                 color: "#fff",
                 fontSize: 14
               },
-              selectedMode: "single"
+              selectedMode: "multi"
             },
             radar: {
               indicator: [

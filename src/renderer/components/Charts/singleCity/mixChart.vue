@@ -56,11 +56,10 @@ export default {
         title: {
           text: '武汉市2017年12个月天气质量合格天数与不合格天数及月平均AQI指数统计图',
           x: '20',
-          top: '20',
+          top: 20,
           left: 'center',
           textStyle: {
-            color: '#fff',
-            fontSize: '22'
+            color: '#fff'
           },
           subtextStyle: {
             color: '#90979c',
@@ -84,8 +83,8 @@ export default {
           }
         },
         legend: {
+          top: 60,
           x: '5%',
-          top: '10%',
           textStyle: {
             color: '#90979c'
           },

@@ -167,7 +167,7 @@ var lineStyle = {
 
 var option = {
      title: {
-        top: 3,
+        top: 20,
         text: '多城市不同污染物数值和污染等级平行坐标图',
         left: 'center',
         textStyle: {
@@ -176,7 +176,7 @@ var option = {
     },
     backgroundColor: '#333',
     legend: {
-        bottom: 30,
+        bottom: 20,
         data: ['北京', '上海', '广州'],
         itemGap: 20,
         textStyle: {
@@ -203,11 +203,6 @@ var option = {
                 + schema[6].text + '：' + value[6] + '<br>';
         }
     },
-    // dataZoom: {
-    //     show: true,
-    //     orient: 'vertical',
-    //     parallelAxisIndex: [0]
-    // },
     parallelAxis: [
         {dim: 0, name: schema[0].text, inverse: true, max: 31, nameLocation: 'start'},
         {dim: 1, name: schema[1].text},
@@ -220,6 +215,7 @@ var option = {
         type: 'category', data: ['优', '良', '轻度污染', '中度污染', '重度污染', '严重污染']}
     ],
     visualMap: {
+        left: '2%',
         show: true,
         min: 0,
         max: 150,
@@ -230,9 +226,10 @@ var option = {
         }
     },
     parallel: {
-        left: '5%',
-        right: '18%',
-        bottom: 100,
+        left: '7%',
+        right: '10%',
+        top: 100,
+        bottom: 80,
         parallelAxisDefault: {
             type: 'value',
             name: 'AQI指数',

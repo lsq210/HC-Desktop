@@ -55,8 +55,12 @@ export default {
           var option = {
             backgroundColor: "#404a59",
             title: {
+              top: 20,
               text: "武汉2017年空气质量等级比例图",
-              x: "center"
+              x: "center",
+              textStyle: {
+                color: "#fff"
+              }
             },
             tooltip: {
               trigger: "item",
@@ -64,8 +68,12 @@ export default {
             },
             legend: {
               x: "center",
-              y: "bottom",
-              data: ["rose1", "rose2", "rose3", "rose4", "rose5"]
+              bottom: 35,
+              textStyle: {
+                color: "#fff",
+                fontSize: 14
+              },
+              data: ["优", "良", "轻度污染", "中度污染", "重度污染"]
             },
             toolbox: {
               show: true,

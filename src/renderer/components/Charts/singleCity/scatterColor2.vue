@@ -1,11 +1,17 @@
 <template>
-  <div :class="className" :id="id" :style="{height:height,width:width}"></div>
+ <div 
+ :class="className" 
+ :id="id" 
+ :style="{height:height,width:width}" 
+ :dateSelectedValue="dateSelectedValue">
+ </div>
 </template>
 
 <script>
 /* eslint-disable */
 import echarts from 'echarts'
 import resize from '../mixins/resize'
+
 export default {
   mixins: [resize],
   props: {
@@ -24,6 +30,10 @@ export default {
     height: {
       type: String,
       default: '200px'
+    },
+    dateSelectedValue: {
+      type: [String, Number, Date],
+      default: 2014
     }
   },
   data() {
@@ -33,6 +43,7 @@ export default {
   },
   mounted() {
     this.initChart()
+    // console.log(this.dateSelectedValue)
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -179,17 +190,17 @@ var option = {
     },
     backgroundColor: '#404a59',
     color: [
-        '#dd4444', '#fec42c', '#80F1BE'
+        '#CC0033'
     ],
-    legend: {
-        x:'80%',
-        y: '10%',
-        data: ['武汉'],
-        textStyle: {
-            color: '#fff',
-            fontSize: 16
-        }
-    },
+    // legend: {
+    //     x:'80%',
+    //     y: '10%',
+    //     data: ['武汉'],
+    //     textStyle: {
+    //         color: '#fff',
+    //         fontSize: 16
+    //     }
+    // },
     grid: {
         x: '10%',
         x2: 150,
@@ -239,8 +250,7 @@ var option = {
         nameLocation: 'end',
         nameGap: 20,
         nameTextStyle: {
-            color: '#fff',
-            fontSize: 16
+            color: '#fff'
         },
         axisLine: {
             lineStyle: {

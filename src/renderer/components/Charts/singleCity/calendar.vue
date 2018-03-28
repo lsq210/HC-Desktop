@@ -80,7 +80,7 @@ export default {
             backgroundColor: "#404a59",
 
             title: {
-              top: 30,
+              top: 20,
               text: "2017年武汉每天的AQI指数",
               left: "center",
               textStyle: {

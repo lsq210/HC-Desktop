@@ -150,11 +150,32 @@ export function getdailydatabymouth(query) {
   })
 }
 
-// export function getdatatimespan(query) {
-//   // 获取污染物时间跨度
-//   return request({
-//     url: '/getdatatimespan',
-//     method: 'get',
-//     params: query
-//   })
-// }
+export function getDataTimeSpan(query) {
+  // 获取污染物时间跨度
+  return request({
+    url: '/getdatatimespan',
+    method: 'get',
+    params: query
+  })
+}
+
+export function getCitiesInfo(query) {
+  //获取城市列表 GET /getcitiesinfo/?format=json
+  //   [
+  //     {
+  //         "id": 1,
+  //         "cityname": "阿坝州",
+  //         "lat": 31.9018292959348,
+  //         "lon": 102.22049029261,
+  //         "gdp": null,
+  //         "pop": null,
+  //         "area": null
+  //     },
+  // ...
+  // ]
+  return request({
+    url: '/getcitiesinfo',
+    method: 'get',
+    params: query
+  })
+}
