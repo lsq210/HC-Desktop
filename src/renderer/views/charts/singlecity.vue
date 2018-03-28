@@ -3,7 +3,7 @@
     <div class="select-wrapper">
       <el-row type="flex" justify="end">
         <el-col :span="4" :offset="1">
-          <el-select 
+          <el-select id="citySelector"
           v-model="citySelectedValue"
           filterable
           :disabled="isCitySelectDisable"
@@ -18,39 +18,68 @@
           </el-select>
         </el-col>
         <el-col :span="5" :offset="1">
-            <el-date-picker
-            v-model="dateSelectedValue"
-            align="right"
-            type="month"
-            editable: false
-            placeholder="选择时间"
-            :disabled="isDatePickerDisable"/>
+          <el-date-picker
+          v-model="dateSelectedValue"
+          align="right"
+          type="month"
+          editable: false
+          placeholder="选择时间"
+          :disabled="isDatePickerDisable"/>
         </el-col>
       </el-row>
     </div>
-    <div class="chart-wrapper">
-      <mixChart id="mixChart" height='100%' width='100%'></mixChart>
-    </div>
      <div class="chart-wrapper">
-      <calendar id="calendar" height='100%' width='100%'></calendar>
+      <calendar 
+      id="calendar" 
+      height='100%' 
+      width='100%' 
+      :cityId="citySelectedValue" 
+      :year="yearSelected"
+      :cityName="citySelectedName">
+      </calendar>
+    </div>
+    <div class="chart-wrapper">
+      <rose 
+      id="rose" 
+      height='100%' 
+      width='100%'
+      :cityId="citySelectedValue" 
+      :year="yearSelected"
+      :cityName="citySelectedName">
+      </rose>
     </div>
     <div class="chart-wrapper" style="height: 100vh;">
-      <radar id="radar" height='100%' width='100%'></radar>
+      <radar 
+      id="radar" 
+      height='100%' 
+      width='100%'
+      :cityId="citySelectedValue" 
+      :year="yearSelected"
+      :cityName="citySelectedName"></radar>
     </div>
     <div class="chart-wrapper">
-      <rose id="rose" height='100%' width='100%'></rose>
+      <mixChart 
+      id="mixChart" 
+      height='100%' 
+      width='100%'
+      :cityId="citySelectedValue" 
+      :year="yearSelected"
+      :cityName="citySelectedName"></mixChart>
     </div>
     <div class="chart-wrapper">
       <scatterColor2 
       id="scatterColor2"
       height='100%'
-      width='100%'>
+      width='100%'
+      :cityId="citySelectedValue" 
+      :year="yearSelected"
+      :cityName="citySelectedName"
+      :month="monthSelected">
       </scatterColor2>
     </div>
   </div>
 </template>
 
- 
 <script>
 /* eslint-disable */
 import mixChart from "@/components/Charts/singleCity/mixChart"
@@ -66,8 +95,9 @@ export default {
   data() {
     return {
       cityOptions: [],
-      citySelectedValue: "",
-      dateSelectedValue: "2017-03"
+      citySelectedValue: 299,
+      dateSelectedValue: new Date(2017,3,2),
+      citySelectedName: "武汉"
     };
   },
   mounted() {
@@ -79,6 +109,20 @@ export default {
     },
     isDatePickerDisable: function() {
       return this.cityOptions.length > 0 ? false : true
+    },
+    yearSelected: function() {
+      return this.dateSelectedValue ? this.dateSelectedValue.getFullYear() : 2017
+    },
+    monthSelected: function() {
+      return this.dateSelectedValue ? this.dateSelectedValue.getMonth() + 1 : 1
+    }
+  },
+  watch: {
+    citySelectedValue: function() {
+      for(var i=0; i< this.cityOptions.length; i++) {
+        if(this.cityOptions[i].id == this.citySelectedValue)
+          this.citySelectedName = this.cityOptions[i].cityname
+      }
     }
   },
   methods: {
@@ -87,22 +131,9 @@ export default {
         format: "json"
       }).then(response => {
         this.cityOptions = response.data
-        // console.log(JSON.stringify(response.data))
       });
     },
     citySelectChanged(newValue) {
-      getDataTimeSpan({
-        format: "json",
-        city: newValue
-      }).then(response => {
-        let minYear = response.data.min.year
-        let minmonth = response.data.min.month
-        let maxYear = response.data.max.year
-        let maxMonth = response.data.max.month
-
-
-      })
-      console.log(JSON.stringify(newValue))
     }
   },
   components: { mixChart, radar, calendar, scatterColor2, rose }

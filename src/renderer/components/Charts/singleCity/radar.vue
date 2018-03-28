@@ -6,7 +6,7 @@
 /* eslint-disable */
 import echarts from "echarts";
 import resize from "../mixins/resize";
-import { getCityPollutantsByYear } from "../../../api/data/main";
+import { getCityPollutantsByYear } from "@/api/data/main";
 
 export default {
   mixins: [resize],
@@ -26,6 +26,18 @@ export default {
     height: {
       type: String,
       default: "200px"
+    },
+    cityId: {
+      type: [Date, String, Number],
+      default: 299
+    },
+    cityName: {
+      type: String,
+      default: "武汉"
+    },
+    year: {
+      type: Number,
+      default: 2017
     }
   },
   data() {
@@ -43,14 +55,22 @@ export default {
     this.chart.dispose();
     this.chart = null;
   },
+  watch: {
+    cityId: function(newValue, oldValue) {
+      this.initChart()
+    },
+    year: function(newValue, oldValue) {
+      this.initChart()
+    }
+  },
   methods: {
     initChart() {
+      if (!this.cityId || !this.year) return;
       this.chart = echarts.init(document.getElementById(this.id));
-
       getCityPollutantsByYear({
         format: "json",
-        city: 2,
-        year: 2017
+        city: this.cityId,
+        year: this.year
       })
         .then(response => {
           // var dataBJave = [[168, 128, 172, 1.49, 97, 56, 24]];
@@ -72,7 +92,10 @@ export default {
             backgroundColor: "#344b58",
             title: {
               top: 20,
-              text: "AQI - 雷达图",
+              text:
+                this.cityName && this.year
+                  ? this.year + "年" + this.cityName + "空气污染物指数雷达图"
+                  : "空气污染物指数雷达图",
               left: "center",
               textStyle: {
                 color: "#fff"
@@ -90,9 +113,9 @@ export default {
             },
             radar: {
               indicator: [
-                { name: "AQI", max: 400 },
+                { name: "AQI", max: 550 },
                 { name: "PM2.5", max: 350 },
-                { name: "PM10", max: 500 },
+                { name: "PM10", max: 620 },
                 { name: "CO", max: 5 },
                 { name: "NO2", max: 200 },
                 { name: "SO2", max: 100 }

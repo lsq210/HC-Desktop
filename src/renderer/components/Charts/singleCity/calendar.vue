@@ -6,7 +6,7 @@
 /* eslint-disable */
 import echarts from "echarts";
 import resize from "../mixins/resize";
-import { getYearAqiData } from "../../../api/data/main";
+import { getYearAqiData } from "@/api/data/main";
 import axios from "axios";
 
 export default {
@@ -27,6 +27,18 @@ export default {
     height: {
       type: String,
       default: "200px"
+    },
+    cityId: {
+      type: [Date, String, Number],
+      default: 299
+    },
+    cityName: {
+      type: String,
+      default: "武汉"
+    },
+    year: {
+      type: Number,
+      default: 2017
     }
   },
   data() {
@@ -44,10 +56,18 @@ export default {
     this.chart.dispose();
     this.chart = null;
   },
+  watch: {
+    cityId: function(newValue, oldValue) {
+      this.initChart()
+    },
+    year: function(newValue, oldValue) {
+      this.initChart()
+    }
+  },
   methods: {
     initChart() {
       function getVirtulData(year) {
-        year = year || "2018";
+        year = year || "2017";
         var date = +echarts.number.parseDate(year + "-01-01");
         var end = +echarts.number.parseDate(+year + 1 + "-01-01");
         var dayTime = 3600 * 24 * 1000;
@@ -58,17 +78,16 @@ export default {
             Math.floor(Math.random() * 10000)
           ]);
         }
-        // alert(JSON.stringify(data))
         return data;
       }
 
       var data = [];
-      // console.log(JSON.stringify(getVirtulData(2017)))
 
+      if (!this.cityId || !this.year) return;
       getYearAqiData({
         format: "json",
-        city: 2,
-        year: 2017
+        city: this.cityId,
+        year: this.year
       })
         .then(response => {
           this.chart = echarts.init(document.getElementById(this.id));
@@ -81,7 +100,9 @@ export default {
 
             title: {
               top: 20,
-              text: "2017年武汉每天的AQI指数",
+              text: (this.cityName && this.year) 
+                ? this.year + "年" + this.cityName + "每天的AQI指数"
+                : "AQI指数",
               left: "center",
               textStyle: {
                 color: "#fff"
@@ -102,7 +123,7 @@ export default {
               {
                 top: 100,
                 left: "center",
-                range: ["2017-01-01", "2017-06-30"],
+                range: [this.year + "-01-01", this.year + "-06-30"],
                 splitLine: {
                   show: true,
                   lineStyle: {
@@ -128,7 +149,7 @@ export default {
               {
                 top: 340,
                 left: "center",
-                range: ["2017-07-01", "2017-12-31"],
+                range: [this.year + "-07-01", this.year + "-12-31"],
                 splitLine: {
                   show: true,
                   lineStyle: {

@@ -34,7 +34,23 @@ export default {
     },
     dateSelectedValue: {
       type: [String, Number, Date],
-      default: 2014
+      default: 2017
+    },
+    cityId: {
+      type: [Date, String, Number],
+      default: 299
+    },
+    cityName: {
+      type: String,
+      default: "武汉"
+    },
+    year: {
+      type: Number,
+      default: 2017
+    },
+    month: {
+      type: Number,
+      default: 1
     }
   },
   data() {
@@ -53,15 +69,27 @@ export default {
     this.chart.dispose();
     this.chart = null;
   },
+  watch: {
+    cityId: function(newValue, oldValue) {
+      this.initChart();
+    },
+    year: function(newValue, oldValue) {
+      this.initChart();
+    },
+    month: function(newValue, oldValue) {
+      this.initChart();
+    }
+  },
   methods: {
     initChart() {
+      if (!this.cityId || !this.year || !this.month) return;
       this.chart = echarts.init(document.getElementById(this.id));
 
       getDailyDataByMouth({
         format: "json",
-        city: 2,
-        year: 2017,
-        month: 3
+        city: this.cityId,
+        year: this.year,
+        month: this.month
       }).then(response => {
         // var data = [
         //   [1, 55, 9, 56, 0.46, 18, 6, "良"],
@@ -96,7 +124,7 @@ export default {
         //   [30, 52, 24, 60, 1.03, 50, 21, "良"],
         //   [31, 46, 5, 49, 0.28, 10, 6, "优"]
         // ];
-        var data = response.data
+        var data = response.data;
 
         var schema = [
           { name: "date", index: 0, text: "日" },
@@ -121,7 +149,15 @@ export default {
         var option = {
           title: {
             top: 30,
-            text: "武汉一个月每天的AQI及各污染物指数图",
+            text:
+              this.cityName && this.year && this.month
+                ? this.year +
+                  "年" +
+                  this.month +
+                  "月" +
+                  this.cityName +
+                  "每天的AQI及各污染物指数图"
+                : "月每天的AQI及各污染物指数图",
             left: "center",
             textStyle: {
               color: "#fff"

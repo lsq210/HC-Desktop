@@ -26,6 +26,18 @@ export default {
     height: {
       type: String,
       default: "200px"
+    },
+    cityId: {
+      type: [Date, String, Number],
+      default: 299
+    },
+    cityName: {
+      type: String,
+      default: "武汉"
+    },
+    year: {
+      type: Number,
+      default: 2017
     }
   },
   data() {
@@ -43,20 +55,32 @@ export default {
     this.chart.dispose();
     this.chart = null;
   },
+  watch: {
+    cityId: function(newValue, oldValue) {
+      this.initChart()
+    },
+    year: function(newValue, oldValue) {
+      this.initChart()
+    }
+  },
   methods: {
     initChart() {
+      if (!this.cityId || !this.year) return;
       this.chart = echarts.init(document.getElementById(this.id));
       getCityDaysLeavelByYear({
         format: "json",
-        city: 2,
-        year: 2017
+        city: this.cityId,
+        year: this.year
       })
         .then(response => {
           var option = {
             backgroundColor: "#404a59",
             title: {
               top: 20,
-              text: "武汉2017年空气质量等级比例图",
+              text:
+                this.cityName && this.year
+                  ? this.year + "年" + this.cityName + "空气质量等级比例图"
+                  : "空气质量等级比例图",
               x: "center",
               textStyle: {
                 color: "#fff"
