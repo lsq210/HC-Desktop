@@ -3,11 +3,10 @@
     <div class="select-wrapper">
       <el-row type="flex" justify="end">
         <el-col :span="4" :offset="1">
-          <el-select id="citySelector"
+          <el-select
           v-model="citySelectedValue"
           filterable
           :disabled="isCitySelectDisable"
-          @change="citySelectChanged"
            placeholder="选择城市">
             <el-option
             v-for="item in cityOptions"
@@ -132,8 +131,6 @@ export default {
       }).then(response => {
         this.cityOptions = response.data
       });
-    },
-    citySelectChanged(newValue) {
     }
   },
   components: { mixChart, radar, calendar, scatterColor2, rose }
