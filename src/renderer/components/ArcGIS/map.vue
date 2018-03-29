@@ -1,6 +1,14 @@
 <template>
   <div class="claro">
     <div id="viewDiv"></div>
+    <div class="datepicker-wraper">
+      <el-date-picker style="margin-right: 0px;"
+      v-model="dateSelected"
+      type="date"
+      size="small"
+      placeholder="选择日期">
+      </el-date-picker>
+    </div>
   </div>
 </template>
 
@@ -8,16 +16,33 @@
 /* eslint-disable */
 import * as esriLoader from "esri-loader";
 // import testData from "./testdata";
-import { getDailyNationalData } from "../../api/data/main";
+import { getDailyNationalData } from "@/api/data/main";
 
 export default {
   data() {
     return {
-      mapView: null
+      mapView: null,
+      dateSelected: new Date(2017, 2, 1),
+      dateString: "2017-03-01"
     };
   },
   mounted() {
     this.initMap();
+  },
+  watch: {
+    dateSelected: function() {
+      var yearStr = this.dateSelected.getFullYear();
+      var monthStr = this.dateSelected.getMonth() + 1;
+      var dayStr = this.dateSelected.getDate();
+      var dateStr = yearStr;
+      if (monthStr < 10) dateStr += "-0" + monthStr;
+      else dateStr += "-" + monthStr;
+      if (dayStr < 10) dateStr += "-0" + dayStr;
+      else dateStr += "-" + dayStr;
+      this.dateString = dateStr
+      // console.log(dateStr)
+      this.reAddPoints()
+    }
   },
   methods: {
     initMap() {
@@ -91,7 +116,7 @@ export default {
             });
             getDailyNationalData({
               format: "json",
-              date: "2017-03-01"
+              date: this.dateString
             })
               .then(respose => {
                 this.addPoints(respose.data);
@@ -216,10 +241,23 @@ export default {
           }
 
           // Add the graphics to the view's graphics layer
+          this.mapView.graphics = []
           this.mapView.graphics.addMany(pointGraphics);
         })
         .catch(err => {
           // handle any errors
+          console.error(err);
+        });
+    },
+    reAddPoints(data) {
+      getDailyNationalData({
+        format: "json",
+        date: this.dateString
+      })
+        .then(respose => {
+          this.addPoints(respose.data);
+        })
+        .catch(err => {
           console.error(err);
         });
     }
@@ -235,5 +273,11 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
+}
+.datepicker-wraper {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

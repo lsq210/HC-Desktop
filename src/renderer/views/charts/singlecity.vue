@@ -119,8 +119,10 @@ export default {
   watch: {
     citySelectedValue: function() {
       for(var i=0; i< this.cityOptions.length; i++) {
-        if(this.cityOptions[i].id == this.citySelectedValue)
+        if(this.cityOptions[i].id == this.citySelectedValue) {
           this.citySelectedName = this.cityOptions[i].cityname
+          break
+        }
       }
     }
   },

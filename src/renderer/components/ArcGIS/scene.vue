@@ -1,6 +1,15 @@
 <template>
   <div>
     <div id="viewDiv"></div>
+    <div class="datepicker-wraper">
+      <el-date-picker style="margin-right: 0px;"
+      v-model="dateSelected"
+      type="date"
+      size="small"
+      :readonly="dateReadOnly"
+      placeholder="选择日期">
+      </el-date-picker>
+    </div>
   </div>
 </template>
 
@@ -8,12 +17,14 @@
 /* eslint-disable */
 import * as esriLoader from "esri-loader";
 // import testData from "./testdata";
-import { getDailyNationalData } from "../../api/data/main";
+import { getDailyNationalData } from "@/api/data/main";
 
 export default {
   data() {
     return {
-      sceneView: null
+      sceneView: null,
+      dateSelected: new Date(2017, 2 ,1),
+      dateReadOnly: true
     };
   },
   mounted() {
@@ -203,7 +214,6 @@ export default {
                     },
                     outFields: ["*"]
                   });
-
                   graphicsLayer.add(pointGraphic);
                 }
               })
@@ -229,5 +239,11 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
+}
+.datepicker-wraper {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

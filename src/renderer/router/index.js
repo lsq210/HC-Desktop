@@ -68,8 +68,8 @@ export const constantRouterMap = [
     },
     children: [
       // { path: 'national', component: _import('charts/national'), name: 'national', meta: { title: 'national', noCache: true }},
-      { path: 'multicity', component: _import('charts/multicity'), name: 'multicity', meta: { title: 'multicity', noCache: true }},
-      { path: 'singlecity', component: _import('charts/singlecity'), name: 'singlecity', meta: { title: 'singlecity', noCache: true }}
+      { path: 'singlecity', component: _import('charts/singlecity'), name: 'singlecity', meta: { title: 'singlecity', noCache: true }},
+      { path: 'multicity', component: _import('charts/multicity'), name: 'multicity', meta: { title: 'multicity', noCache: true }}
     ]
   }
 ]
